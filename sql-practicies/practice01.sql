@@ -6,7 +6,7 @@ where emp_no='10944';
 
 -- 문제2. 
 -- 전체직원의 다음 정보를 조회하세요. 가장 선임부터 출력이 되도록 하세요. 출력은 이름, 성별,  입사일 순서이고 “이름”, “성별”, “입사일로 컬럼 이름을 대체해 보세요.
-select concat( last_name, " ",first_name) as "이름", gender as "성별" , hire_date as "입사일"
+select concat( first_name, " ",last_name) as "이름", gender as "성별" , hire_date as "입사일"
 from employees
 order by hire_date;
 
@@ -65,7 +65,7 @@ select distinct title from titles order by length(title) desc;
 
 -- 문제10 30983
 -- 현재 Enginner 직책의 사원은 총 몇 명입니까?
- select count(emp_no) from titles where title='Engineer' and to_date='9999-01-01';
+ select title, count(emp_no) from titles where title like '%Engineer%' and to_date='9999-01-01';
 
 -- 문제11
 -- 사번이 13250(Zeydy)인 지원이 직책 변경 상황을 시간순으로 출력해보세요.
