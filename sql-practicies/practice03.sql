@@ -2,10 +2,14 @@
 --  
 -- 문제 1.
 -- 현재 급여가 많은 직원부터 직원의 사번, 이름, 그리고 연봉을 출력 하시오.
-select s.emp_no as'사번', e.first_name as '이름', s.salary as '연봉'
-from salaries s join employees e on s.emp_no = e.emp_no
+select s.emp_no as'사번', concat(e.first_name,' ',e.last_name) as name, s.salary as '연봉', s.to_date
+from salaries s, employees e
+where s.emp_no = e.emp_no
+and s.to_date like '9999%'
 order by s.salary desc
 ;
+-- result가 실행할때마다 계속 늘어나고 나는 82개 언니는 37개로 고정
+
 
 -- 문제2. 결과 42 
 -- 전체 사원의 사번, 이름, 현재 직책을 이름 순서로 출력하세요.
@@ -16,6 +20,7 @@ and t.to_date = '9999-01-01'
 order by name
 ;
 
+-- 날짜 최근으로 다 바꾸기
 
 -- 문제3. 결과 41
 -- 전체 사원의 사번, 이름, 현재 부서를 이름 순서로 출력하세요..
@@ -36,6 +41,8 @@ where e.emp_no = s.emp_no
 and e.emp_no = de.emp_no
 and e.emp_no = t.emp_no
 and s.to_date = '9999-01-01'
+and t.to_date = '9999-01-01'
+and de.to_date = '9999-01-01'
 and de.dept_no = d.dept_no
 order by name;
 
@@ -69,19 +76,19 @@ from employees e, titles t, salaries s
 where e.emp_no = t.emp_no
 and e.emp_no = s.emp_no
 and t.to_date = '9999-01-01'
-and t.title like "%Engineer%"
+and t.title = "Engineer"
 and s.salary >= 40000
-order by s.salary;
+order by s.salary desc;
 
 -- 문제8.
--- 현재 급여가 50000이 넘는 직책을 직책,  평균급여로 평균급여가 큰 순서대로 출력하시오
+-- 현재 평균 급여가 50000이 넘는 직책을 직책, 평균급여로 평균급여가 큰 순서대로 출력하시오
 select t.title, avg(s.salary) as avg_salary
 from employees e, titles t, salaries s
 where e.emp_no = t.emp_no
 and e.emp_no = s.emp_no
 and t.to_date = '9999-01-01'
-and s.salary >= 50000
 group by t.title
+having avg(s.salary) >= 50000
 order by t.title, avg_salary desc;
 
 
