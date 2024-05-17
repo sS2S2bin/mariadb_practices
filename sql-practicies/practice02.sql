@@ -13,15 +13,9 @@ from salaries;
  -- 문제3.
 -- 가장 오래 근속한 직원의 입사일은 언제인가요? 다음 형식으로 출력해주세요.
 -- 예) 1985년 01월 01일
- select emp_no, date_format(min(from_date),'%Y년 %m월 %d일'), max(to_date - from_date)
+ select emp_no, date_format(min(hire_date),'%Y년 %m월 %d일') -- , max(to_date - from_date)
  from titles
  ;
- 
-SELECT emp_no, MIN(from_date) AS 입사일, MAX(to_date), max(to_date - from_date)
-FROM salaries
-GROUP BY emp_no
-ORDER BY 입사일
-LIMIT 1;
 
  
 -- 문제4.

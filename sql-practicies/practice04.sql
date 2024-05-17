@@ -167,12 +167,12 @@ from employees e, dept_emp de, departments d, salaries s, (
 	and ms.to_date = '9999-01-01'
 ) manager
 where e.emp_no = de.emp_no
+and manager.salary < s.salary
 and de.dept_no = d.dept_no
 and e.emp_no = s.emp_no
 and s.to_date = '9999-01-01'
 and de.to_date = '9999-01-01'
 and manager.dept_no = d.dept_no
-and manager.salary < s.salary
 ;
 
 
