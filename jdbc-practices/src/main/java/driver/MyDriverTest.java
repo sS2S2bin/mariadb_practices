@@ -1,19 +1,19 @@
-package test;
+package driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionTest {
+public class MyDriverTest {
 
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		Connection connection = null;
 		try {
 			// 1. JDBC Driver 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("driver.MyDriver");
 			
-			String url = "jdbc:mariadb://192.168.64.3:3306/webdb?charset=utf-8";
+			String url = "jdbc:mydb://127.0.0.1:2202/webdb";
 
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 			System.out.println("success!");
@@ -35,5 +35,4 @@ public class ConnectionTest {
 		
 	
 	}
-
 }
