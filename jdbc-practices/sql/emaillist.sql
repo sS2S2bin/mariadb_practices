@@ -9,3 +9,14 @@ select no, first_name, last_name,email from emaillist order by no desc;
 -- (d)elete
 delete from emaillist where email = 'dooly@gmail.com';
 -- set sql_safe_updates = 0;
+
+
+insert into author values(null, '....');
+-- insert into author(name) values(?)
+
+select * from author;
+
+select * from author;
+select * from book a, author b where a.author_no and b.no order by a.no desc;
+select * from book;
+select a.no, a.title, a.status, b.name from book a, author b where a.author_no and b.no order by b.no desc;
