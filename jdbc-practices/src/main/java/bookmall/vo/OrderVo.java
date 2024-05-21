@@ -2,7 +2,7 @@ package bookmall.vo;
 
 public class OrderVo {
 	private Long no;
-	private int payment;
+	private Long payment;
 	private Long userNo;
 	private String number;
 	private String status;
@@ -13,11 +13,14 @@ public class OrderVo {
 	public void setNo(Long no) {
 		this.no = no;
 	}
-	public int getPayment() {
+	public Long getPayment() {
 		return payment;
 	}
 	public void setPayment(int i) {
-		this.payment = i;
+		this.payment = Long.valueOf(i);
+	}
+	public void setPayment(Long payment2) {
+		this.payment = payment2;
 	}
 	public Long getUserNo() {
 		return userNo;
@@ -42,7 +45,7 @@ public class OrderVo {
 	}
 	public void setShipping(String shipping) {
 		this.shipping = shipping;
-	}
+}
 	
 	
 }

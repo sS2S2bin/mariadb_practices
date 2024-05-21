@@ -26,7 +26,6 @@ public class UserDao {
 	}
 	
 	public void insert(UserVo vo) {
-		int result = 0;
 		try(
 			Connection conn = getConnection(); 
 			PreparedStatement pstmt1 = conn.prepareStatement("insert into user(name, email, password, phone) values(?,?,?,?)"); 
@@ -37,8 +36,7 @@ public class UserDao {
 			pstmt1.setString(2, vo.getEmail());
 			pstmt1.setString(3, vo.getPassword());
 			pstmt1.setString(4, vo.getPhone());
-			result = pstmt1.executeUpdate();
-			System.out.println(result);
+			pstmt1.executeUpdate();
 			ResultSet rs = pstmt2.executeQuery();
 
 			vo.setNo(rs.next() ? rs.getLong(1):null);
@@ -54,11 +52,10 @@ public class UserDao {
 	public List<UserVo> findAll() {
 		List<UserVo> result = new ArrayList<>();
 		try( 
-				Connection conn = getConnection(); // finally 에서 close 안해도됨
+				Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("select no, name, email, password, phone from user"); //이런 것 만 올 수 있음 // int j = 10 이런건 안돼!
 				ResultSet rs = pstmt.executeQuery();
 			){
-				// binding이 있는 query는 아래에서 rs + rs next뒤에 rs.close()
 				while(rs.next()) {
 					Long no = rs.getLong(1);
 					String name = rs.getString(2);
@@ -86,5 +83,19 @@ public class UserDao {
 				}
 			
 		return result;
+	}
+
+	public void deleteByNo(Long no) {
+		try(
+			Connection conn = getConnection(); 
+			PreparedStatement pstmt = conn.prepareStatement("delete from user where no=?");  
+		){
+			pstmt.setLong(1, no);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("error : "+e);
+		}
+
 	}
 }

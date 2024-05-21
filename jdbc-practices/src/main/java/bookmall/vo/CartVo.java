@@ -2,14 +2,26 @@ package bookmall.vo;
 
 public class CartVo {
 	// Long 이 아닌 int로 해도 되나요?
-	private int quantity;
+	private Long quantity;
 	private Long bookNo;
 	private Long userNo;
 	
-	public int getQuantity() {
+	private String bookTitle;
+	
+	public String getBookTitle() {
+		return bookTitle;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+
+	public Long getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(int i) {
+		this.quantity = Long.valueOf(i);
+	}
+	public void setQuantity(Long i) {
 		this.quantity = i;
 	}
 	public Long getBookNo() {

@@ -44,4 +44,8 @@ public class BookVo {
 		this.price = Long.valueOf(price);
 	}
 
+	public BookVo() {
+		
+	}
+
 }

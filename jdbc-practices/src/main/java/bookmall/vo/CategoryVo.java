@@ -2,9 +2,12 @@ package bookmall.vo;
 
 public class CategoryVo {
 	private Long no;
-	private String category;
-	public CategoryVo(String category) {
-		this.category = category;
+	private String name;
+	public CategoryVo(String name) {
+		this.name = name;
+	}
+	public CategoryVo() {
+		// TODO Auto-generated constructor stub
 	}
 	public Long getNo() {
 		return no;
@@ -12,15 +15,16 @@ public class CategoryVo {
 	public void setNo(Long no) {
 		this.no = no;
 	}
-	public String getCategory() {
-		return category;
+
+	public String getName() {
+		return name;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setName(String name) {
+		this.name = name;
 	}
 	@Override
 	public String toString() {
-		return "CategoryVo [no=" + no + ", category=" + category + ", toString()=" + super.toString() + "]";
+		return "CategoryVo [no=" + no + ", name=" + name + ", toString()=" + super.toString() + "]";
 	}
 	
 	
